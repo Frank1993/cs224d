@@ -10,7 +10,10 @@ def normalizeRows(x):
     # Implement a function that normalizes each row of a matrix to have unit length
     
     ### YOUR CODE HERE
-    raise NotImplementedError
+    N = x.shape[0]
+
+    x /= np.sqrt(np.sum(x**2,axis = 1)).reshape(N,-1) + 1e-30
+
     ### END YOUR CODE
     
     return x
@@ -195,4 +198,4 @@ def test_word2vec():
 
 if __name__ == "__main__":
     test_normalize_rows()
-    test_word2vec()
+    #test_word2vec()
