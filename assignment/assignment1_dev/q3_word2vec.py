@@ -57,6 +57,8 @@ def softmaxCostAndGradient(predicted, target, outputVectors, dataset):
     probabilities = softmax(predicted.dot(outputVectors.T))
     cost = -np.log(probabilities[target])
     delta = probabilities
+
+
     delta[target] -= 1
     N = delta.shape[0]
     D = predicted.shape[0]
@@ -197,17 +199,17 @@ def cbow(currentWord, C, contextWords, tokens, inputVectors, outputVectors,
 
     ### YOUR CODE HERE
     
-    # D = inputVectors.shape[1]
-    # predicted = np.zeros((D,))
+    D = inputVectors.shape[1]
+    predicted = np.zeros((D,))
     
-    # indices = [tokens[cwd] for cwd in contextWords]
-    # for idx in indices:
-    #     predicted += inputVectors[idx, :]
+    indices = [tokens[cwd] for cwd in contextWords]
+    for idx in indices:
+        predicted += inputVectors[idx, :]
     
-    # cost, gp, gradOut = word2vecCostAndGradient(predicted, tokens[currentWord], outputVectors, dataset)
-    # gradIn = np.zeros(inputVectors.shape)
-    # for idx in indices:
-    #     gradIn[idx, :] += gp
+    cost, gp, gradOut = word2vecCostAndGradient(predicted, tokens[currentWord], outputVectors, dataset)
+    gradIn = np.zeros(inputVectors.shape)
+    #for idx in indices:
+        #gradIn[idx, :] += gp
     
     ### END YOUR CODE
     
